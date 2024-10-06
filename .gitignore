@@ -1,4 +1,7 @@
 
-venv
+.env
+data
 scratchspace
-
+secrets
+venv
+__pycache__
