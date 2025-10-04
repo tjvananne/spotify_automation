@@ -4,6 +4,7 @@ from dataclasses import dataclass
 import functools
 import json
 import os
+import sqlite3
 import time
 from typing import Dict, Callable
 
@@ -13,9 +14,10 @@ import requests
 
 load_dotenv()
 SECRETS_PATH = './secrets'
+DB_PATH = './spotify.db'
 MY_USER_ID = 'et1kvvnuze4mz6xjxyjeoqua3'
 
-
+con = sqlite3.connect(DB_PATH)
 
 @dataclass
 class ApiReq():
@@ -99,6 +101,10 @@ class Spotify():
         request.kwargs['headers'] = self.auth_header
         response: requests.models.Response = self.api_req(request)
         return response
+
+    def sync_liked_songs(self):
+        # 1. 
+        pass
 
     def v1_me(self):
         response = self.api_req(
